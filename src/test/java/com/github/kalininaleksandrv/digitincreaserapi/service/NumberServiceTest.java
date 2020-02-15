@@ -7,8 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -28,5 +27,16 @@ class NumberServiceTest {
     void doIncreaseByOne() {
         String result  = numberService.doIncreaseByOne(" 1 2 999 ");
         assertThat(result.split("\\s+")).containsSequence("2", "3", "1000");
+    }
+
+    @Test
+    void doIncreaseByOneNumberException() {
+       assertThrows(NumberFormatException.class, () -> numberService.doIncreaseByOne(" 1 2 9999999999999999999"));
+    }
+
+    @Test
+    void doIncreaseByOneNegativeDigit() {
+        String result  = numberService.doIncreaseByOne(" 1 2 -999 ");
+        assertThat(result.split("\\s+")).containsSequence("2", "3", "-998");
     }
 }

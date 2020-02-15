@@ -13,7 +13,7 @@ public class NumberService {
         boolean hasNoDigitChars = true;
 
         for (char c : checked.toCharArray()) {
-            if (!Character.isDigit(c) && !Character.isWhitespace(c)) {
+            if (!Character.isDigit(c) && !Character.isWhitespace(c) && c!= '-') {
                 hasNoDigitChars = false;
                 break;
             }
