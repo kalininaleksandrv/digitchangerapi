@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api")
 public class NumberController {
 
-    private NumberService numberService;
+    private final NumberService numberService;
 
     public NumberController(NumberService numberService) {
         this.numberService = numberService;
